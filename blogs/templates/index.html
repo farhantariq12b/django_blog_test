@@ -1,0 +1,113 @@
+    
+{%extends "./base.html"%}
+{% load static %}
+{%block content%}
+    <div class="row" style="background: linear-gradient(151.32deg,#9C4FEB,#1AB9EA);height: calc(100% - 146px);padding: 100px 0 46px;">
+      
+      <div class="col-lg-6">
+        <div class="contentdiv">
+          <h1 style="padding:20px 0; font-weight: bold;">Wallpapers, Every thing for you</h1>
+          <p style="padding:40px 0; font-weight: bold;">Wallpaper is number 1 website in the world and helps to reflects you.</p>
+        </div>
+      </div>
+      
+      <div class="col-lg-6" >
+        <img src="{%static 'my_app/contact-us-banner.webp' %}" alt="" style="height: 450px; width: 600px;">
+      </div>
+      
+    </div>
+        
+    <section style=" display: flex;flex-direction: column;align-items: center;justify-content: center;">
+    
+      <section style="width: 1200px;display: flex;flex-direction: row;justify-content: space-between;">
+        <div class="card1" style="text-align: center;">
+          
+          <img src="{%static 'my_app/card1.webp' %}" alt="">
+          <h3 style="padding: 16px 0; letter-spacing: -.4px;">30 million active user</h3>
+          <p style="font-size: 18px;line-height: 28px;">Has more than 500 downloads</p>
+        
+        </div>
+        
+        <div class="card2" style="text-align: center;">
+          
+          <img src="{%static 'my_app/card2.webp' %}" alt="">
+          <h3 style="padding: 16px 0; letter-spacing: -.4px;">30 million active user</h3>
+          <p style="font-size: 18px;line-height: 28px;">Has more than 500 downloads</p>
+        
+        </div>
+        
+        <div class="card3" style="text-align: center;">
+          
+          <img src="{%static 'my_app/card3.webp' %}" alt="">
+          <h3 style="padding: 16px 0; letter-spacing: -.4px;">30 million active user</h3>
+          <p style="font-size: 18px;line-height: 28px;">Has more than 500 downloads</p>
+        
+        </div>
+        
+      </section>
+      
+    </section>
+            
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">        
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      
+      <div class="carousel-inner" style="height: 400px;">
+        <div class="carousel-item active" style="height: 250px;">
+          <img class="d-block w-100" src="{%static 'my_app/css-gradient-02.jpeg' %}" alt="First slide">
+            
+          <div class="carousel-caption d-none d-md-block">
+            <h1 style="padding: 20px 0;">{{blog.title}} </h1>
+            <p style="font-weight: bold;">{{blog.description}} </p>
+          </div>
+        </div>
+        {%for blog in Blog%}
+          <div class="carousel-item" style="height: 250px;">
+            <img class="d-block w-100" src="{%static 'my_app/css-gradient-02.jpeg' %}" alt="slide">
+              
+            <div class="carousel-caption d-none d-md-block">
+              <h1 style="padding: 20px 0;">{{blog.title}}</h1>
+              <p style="font-weight: bold;">{{blog.description}}</p>
+            </div>
+          </div>
+        {%endfor%}
+      </div>
+      
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+            <!-- <section style="width: 100%;height: 200px;"></section> -->
+    <section style="background: linear-gradient(180deg,#40315B 10%,#222 40%);overflow: hidden;position: relative; height: 700px;">
+      <h1 style="font-weight: bold; text-align: center; color: blanchedalmond; margin-top: 20px;">Content for all tastes and styles</h1>
+      
+      <div style="display: flex; flex-flow:nowrap;justify-content: center;padding: 100px 0 0;width: 100%;">
+        <div class="content-type-items" style="text-align: center;margin-right: 64px;">
+          <img src="{%static 'my_app/tea.jpg' %}" alt="" style="width:300px; height:400px;">
+          <h4 style="color: blanchedalmond; font-weight: bold;">Wallpaper</h4>
+        </div>
+      
+        <div class="content-type-items" style="text-align: center;margin-right: 64px;">
+          <img src="{%static 'my_app/tea.jpg' %}" alt="" style="width:300px; height:400px;">
+          <h4 style="color: blanchedalmond; font-weight: bold;" >Live Wallpaper</h4>
+        </div>
+      
+        <div class="content-type-items" style="text-align: center;margin-right: 64px;">
+          <img src="{%static 'my_app/tea.jpg' %}" alt="" style="width:300px; height:400px;">
+          <h4 style="color: blanchedalmond; font-weight: bold;">Videos</h4>
+        </div>
+      
+        <section style="background: linear-gradient(180deg,#40315B 10%,#222 40%);overflow: hidden;position: relative; height: 200px;">
+      </div>
+
+    </section>
+{%endblock%}

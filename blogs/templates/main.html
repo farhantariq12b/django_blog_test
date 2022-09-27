@@ -1,0 +1,114 @@
+{% load static %}
+
+{% block content %}
+  <main>
+    <div class="row">
+      <div class="col-12">
+        <h2 class="tm-page-title mb-4">Our Blog Catalog</h2>
+        <div class="tm-categories-container mb-5">
+          <h3 class="tm-text-primary tm-categories-text">Tags:</h3>
+          <ul class="nav tm-category-list">
+            <li class="nav-item tm-category-item">
+              <a href="/blogs" class="nav-link tm-category-link active">All</a>
+            </li>
+            {% for category in categories %}
+            <li class="nav-item tm-category-item">
+              {% if search and page %}
+              <a href="?cat={{category.id}}{{search}}{{page}}" class="nav-link tm-category-link">{{category.name}}</a>
+              {% elif search %}
+                <a href="?cat={{category.id}}{{search}}" class="nav-link tm-category-link">{{category.name}}</a>
+              {% elif page %}
+                <a href="?cat={{category.id}}{{page}}" class="nav-link tm-category-link">{{category.name}}</a>
+              {% endif %}
+              <!-- <a href="/blogs/dummy/{{category.id}}" class="nav-link tm-category-link">{{category.name}}</a> -->
+            </li>
+            {% endfor %}
+            
+            <!-- <li class="nav-item tm-category-item">
+              <a href="#" class="nav-link tm-category-link">Nature</a>
+            </li>
+            <li class="nav-item tm-category-item">
+              <a href="#" class="nav-link tm-category-link">Actions</a>
+            </li>
+            <li class="nav-item tm-category-item">
+              <a href="#" class="nav-link tm-category-link">Featured</a>
+            </li> -->
+          </ul>
+        </div>
+        <div class="tm-search-container mb-5">
+          <form method= "GET" id="form_search_filter">
+            <input name="search" type="text" id="inp_search_filter">
+            <input type="submit" value="Search" id="btn_search_filter">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="row tm-catalog-item-list">
+
+      {% for blog in page_obj %}
+        <div class="col-lg-4 col-md-6 col-sm-12 tm-catalog-item">
+          <div class="position-relative tm-thumbnail-container">
+            <a href="/blogs/{{blog.id}}" class="position-absolute tm-img-overlay">
+              <i class="fas fa-file tm-overlay-icon"></i>
+            </a>
+            <img
+              src="{% static 'my_app/tn-01.jpg' %}"
+              alt="Image"
+              class="img-fluid tm-catalog-item-img"
+            />
+          </div>
+          <div class="p-4 tm-bg-gray tm-catalog-item-description">
+            <a href="/blogs/{{blog.id}}">
+              <h3 class="tm-text-primary mb-3 tm-catalog-item-title">
+                {{blog.title}}
+              </h3>
+            </a>
+            <p class="tm-catalog-item-text">
+              {{blog.description}}
+            </p>
+          </div>
+        </div>
+      {%endfor%}
+      
+    </div>
+
+    <!-- Catalog Paging Buttons -->
+
+    <div>
+      <ul class="nav tm-paging-links">
+        {% if page_obj.has_previous %}
+          <li class="nav-item active">
+            <a href="?page={{ page_obj.first }}{{cat}}{{search}}" class="nav-link tm-paging-link">first</a>
+          </li>
+          <li class="nav-item active">
+            <a href="?page={{ page_obj.previous_page_number }}{{cat}}{{search}}" class="nav-link tm-paging-link">prev</a>
+          </li>
+        {% endif %}
+        <li class="nav-item active">
+          <a href="#" style="pointer-events: none" class="nav-link tm-paging-link">{{page_obj.number}}</a>
+        </li>
+        {% if page_obj.has_next %}
+          <li class="nav-item active">
+            <a href="?page={{ page_obj.next_page_number }}{{cat}}{{search}}" class="nav-link tm-paging-link">next</a>
+          </li>
+          <li class="nav-item active">
+            <a href="?page={{ page_obj.paginator.num_pages }}{{cat}}{{search}}" class="nav-link tm-paging-link">last</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </main>  
+{% endblock %}
+
+<!-- <script>
+  window.onload(function () {
+   const btn = window.document.getElementById("#btn_search_filter");
+   console.log(btn,'ssdsds');
+   window.addEventListener("click", function (e) {
+      const input = window.document.getElementById("#inp_search_filter").val();
+      const url = "/blog?search="+input+"&"+cat+"&"+page;
+   });
+   window.document.getElementById("#form_search_filter").attr('action', url);
+  });
+</script> -->
