@@ -1,0 +1,69 @@
+    
+{%extends "./base2.html"%}
+{% load static %}
+{%block content%}
+  <div class="row" style="background: linear-gradient(151.32deg,#9C4FEB,#1AB9EA);text-align: center;">
+      
+    <div class="col-lg-12">
+      <div class="contentdiv">
+        <h1 style="padding:20px 0; font-weight: bold;">Blogs, Every thing you need</h1>
+      </div>
+    </div>
+    
+  </div>
+            
+  <section style="width: 100%;justify-content: center;">
+
+    <form action='/blogs/listblogs/' method="get">
+      {{form}}
+    </form>
+    <table style="display: flex; justify-content:center; padding: 50px;">
+      <tr style="text-align:center; background:rgb(40, 40, 40); color:aliceblue; padding: 50px;">
+        <th>Thumbnail</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Filter</th>
+      </tr>
+      
+      {%for blog in page_obj%}
+      <div class="card1" style="text-align: center; width: 100%; display: flex;">
+        <tr>
+          <td style="padding: 20px;">
+            <img src="{%static ''%}my_app/{{blog.title}}.jpg" alt="Image" style="min-width:300px; height:200px">
+          </td>
+          <td style="padding: 20px;">
+            <a href="/blogs/{{blog.id}}">
+              <h3 style="font-size: 18px;line-height: 28px;color: black;">{{blog.title}}</h3>
+            </a>
+          </td>
+          <td style="padding: 20px;">
+            <h3 style="font-size: 18px;line-height: 28px;">{{blog.description}}</h3>
+          </td>
+        </tr>
+
+        <div style="display: flex; flex-direction: column; text-align: start; padding: 0 0 20 20;">
+        </div>
+        
+      </div>
+    {%endfor%}
+    </table>
+    <div class="pagination">
+      <span class="step-links">
+          {% if page_obj.has_previous %}
+              <a href="?page=1">&laquo; first</a>
+              <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
+          
+          <span class="current">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+  
+          {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}">next</a>
+              <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+      </span>
+    </div>
+
+  </section>            
+{%endblock%}

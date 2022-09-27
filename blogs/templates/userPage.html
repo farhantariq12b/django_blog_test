@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{%load static%}
+{% block content %}
+<div class="content-section">
+  <div class="media">
+    <div class="media-body">
+      <h2 class="account-heading">{{ user.username }}</h2>
+      <p class="text-secondary">{{ user.email }}</p>
+    </div>
+  </div>
+  {% if blogs %}
+    {% for blog in blogs %}
+      <div class="card1 mb-5 mt-5" style="text-align: center; width: 100%; display: flex;">
+      
+          <img src="{%static ''%}my_app/{{blog.title}}.jpg" alt="Image" style="min-width:300px; height:200px">
+          
+          <div style="display: flex; flex-direction: column; text-align: start; padding: 20 20 20 20;">
+              <a href="/blogs/{{blog.id}}">
+                  <h1 style="padding: 20; letter-spacing: -.4px;">{{blog.title}}</h1>
+              </a>
+              <h3 style="padding: 20px; font-size: 18px;line-height: 28px;">{{blog.description}}</h3>
+              <p style="padding: 20px; font-size: 18px;line-height: 28px;">{{blog.content}}</p>
+          </div>
+
+      </div>
+
+      {% for comment in blog.comments.all %}
+
+        <h5>
+          <strong>{{ comment.commenter }}</strong>
+        </h5>
+        <p>{{ comment.comment_body }}</p>
+        <p><small>{{ comment.date_added }}</small></p>                   
+
+                {% endfor %}
+    {%endfor%}
+
+  {% else %}
+      No Blogs found for {{user.name}}
+  {% endif %}
+      
+    
+</div>
+{% endblock content %}

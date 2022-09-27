@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="container-fluid">
+    <div id="content" class="mx-auto tm-content-container">
+      {% include "main.html" with categories=Categories page_obj=page_obj search=search page=page cat=cat %}  
+    </div>
+  </div>
+
+{% endblock %}
