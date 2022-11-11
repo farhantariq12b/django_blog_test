@@ -1,0 +1,5 @@
+
+venv
+blog_app/__init__.py
+blog_app/__pycache__
+blogs/__pycache__
