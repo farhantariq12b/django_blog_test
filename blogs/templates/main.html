@@ -19,8 +19,9 @@
                 <a href="?cat={{category.id}}{{search}}" class="nav-link tm-category-link">{{category.name}}</a>
               {% elif page %}
                 <a href="?cat={{category.id}}{{page}}" class="nav-link tm-category-link">{{category.name}}</a>
+              {% else %}
+                <a href="?cat={{category.id}}" class="nav-link tm-category-link">{{category.name}}</a>
               {% endif %}
-              <!-- <a href="/blogs/dummy/{{category.id}}" class="nav-link tm-category-link">{{category.name}}</a> -->
             </li>
             {% endfor %}
             

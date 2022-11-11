@@ -3,7 +3,7 @@
 {% load static %}
 {%block content%}
 
-      <div class="row" style="background: linear-gradient(151.32deg,#9C4FEB,#1AB9EA); width: 100%;">
+    <div class="row" style="background: linear-gradient(151.32deg,#9C4FEB,#1AB9EA); width: 100%;">
         <div style="width: 100%;display: flex;justify-content: center;">
             <img src="{%static ''%}my_app/{{blog.title}}.jpg" alt="" style="width: 60%; height:500px;">
         </div>
@@ -12,54 +12,49 @@
                 <h1 style="padding:20px 20px; font-weight: bold; text-align: center;">
                     {{blog.title}}
                     <p style="font-weight: 100; font-size: 15px; padding:10px 0px 10px 0px ;">Published On {{blog.created_date}}</p>
-                </h1>
-                
+                </h1>    
             </div>
         </div>
         
-      </div>
-      <section style="width: 100%;display: flex;flex-direction: row;justify-content: center;">
+    </div>
+    <section style="width: 100%;display: flex;flex-direction: row;justify-content: center;">
         <div class="col-lg-12">
             <div class="contentdiv" style="margin-left: 100px; margin-right: 100px;">
                 <p style="padding:20px 0; font-weight: bold; text-align: center;">{{blog.content}}</p>
             </div>
         </div>
-      </section>
-      <div class="col-md-4">
+    </section>
+    <div class="col-md-4">
         <div style="margin: 5px; padding:2px;">
            Add Comments ({{ num_comments }})
            <br>
            <hr>
 
-           {% if not blog.comments.all %}
+            {% if not blog.comments.all %}
 
-               <p>Not comments added yet...</p>
-              <p><a class="btn btn-primary" href="{{blog.id}}/add_comment">  Add Comment </a></p>
+                <p>Not comments added yet...</p>
+                <p><a class="btn btn-primary" href="{{blog.id}}/add_comment">  Add Comment </a></p>
 
-           {% else %}
+            {% else %}
 
-               {% for comment in blog.comments.all %}
+                {% for comment in blog.comments.all %}
 
-                   <h5><strong>{{ comment.commenter_name }}</strong></h5>
-                   <p>{{ comment.comment_body }}</p>
-                   <p><small>{{ comment.date_added }}</small></p>
-                   <p><a class="btn btn-primary" href="{{blog.id}}/add_comment ">  Add Comment </a></p>
+                    <h5><strong>{{ comment.commenter_name }}</strong></h5>
+                    <p>{{ comment.comment_body }}</p>
+                    <p><small>{{ comment.date_added }}</small></p>
+                    <p><a class="btn btn-primary" href="{{blog.id}}/add_comment/{{comment.id}} ">  Add Comment </a></p>
 
-                   {% if request.user.username == comment.commenter %}
+                    {% if request.user.username == comment.commenter %}
 
-                        <p><a class="btn btn-warning" href="{{comment.id}}/edit_comment ">  Edit Comment </a></p>
+                        <p><a class="btn btn-warning" href="{{blog.id}}/edit_comment/{{comment.id}} ">  Edit Comment </a></p>        
+                        <p><a class="btn btn-danger" href="{{blog.id}}/delete_comment/{{comment.id}} ">  Delete Comment </a></p>
                         
-                        <p><a class="btn btn-danger" href="{{comment.id}}/delete_comment ">  Delete Comment </a></p>
-                     
-                   {% endif %}
-                   
-                   
+                    {% endif %} 
 
-               {% endfor %}
+                {% endfor %}
 
-           {% endif %}
-
-   
+            {% endif %}
 
         </div>
+    </div>
 {%endblock%}
